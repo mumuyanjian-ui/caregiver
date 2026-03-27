@@ -1,0 +1,97 @@
+.top-bar,
+.search-box,
+.hospital-summary,
+.task-panel {
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+}
+
+.mini-cta {
+  margin-top: 18rpx;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: #ffffff;
+}
+
+.hospital-scroll,
+.task-scroll {
+  white-space: nowrap;
+  margin-bottom: 18rpx;
+}
+
+.hospital-chip-row,
+.task-row {
+  display: inline-flex;
+  gap: 12rpx;
+}
+
+.hospital-chip,
+.task-tab {
+  padding: 16rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.7);
+  color: #5f6d66;
+  border: 1rpx solid rgba(44, 66, 55, 0.08);
+}
+
+.hospital-chip.active,
+.task-tab.active {
+  background: #0b5254;
+  color: #ffffff;
+}
+
+.summary-title,
+.card-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2a24;
+}
+
+.hospital-summary .muted {
+  display: block;
+  margin-top: 10rpx;
+}
+
+.task-source {
+  margin-top: 8rpx;
+}
+
+.step-list {
+  display: grid;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.step-card {
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1rpx solid rgba(44, 66, 55, 0.08);
+}
+
+.step-top {
+  display: flex;
+  gap: 10rpx;
+  margin-bottom: 12rpx;
+}
+
+.step-badge {
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  background: rgba(15, 118, 110, 0.12);
+  color: #0b5254;
+  font-size: 22rpx;
+}
+
+.step-badge.light {
+  background: rgba(31, 42, 36, 0.06);
+}
+
+.step-card .muted {
+  display: block;
+  margin-top: 8rpx;
+}

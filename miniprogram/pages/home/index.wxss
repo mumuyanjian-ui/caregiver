@@ -1,0 +1,88 @@
+.hero {
+  padding: 32rpx;
+}
+
+.hero-title {
+  margin-top: 10rpx;
+  font-size: 64rpx;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.hero-desc {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+}
+
+.metrics {
+  margin-top: 24rpx;
+  display: grid;
+  gap: 16rpx;
+}
+
+.metric-card {
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1rpx solid rgba(44, 66, 55, 0.1);
+}
+
+.metric-title,
+.card-title,
+.quick-title,
+.strip-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1f2a24;
+}
+
+.hero-actions {
+  margin-top: 24rpx;
+  display: flex;
+  gap: 16rpx;
+}
+
+.strip-list,
+.hospital-list,
+.department-list {
+  display: grid;
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.strip-card,
+.hospital-card,
+.department-card,
+.quick-card {
+  padding: 24rpx;
+}
+
+.strip-label,
+.quick-label {
+  display: block;
+  font-size: 24rpx;
+  color: #d97706;
+  font-weight: 700;
+}
+
+.quick-grid {
+  display: grid;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.quick-card .quick-title {
+  margin-top: 10rpx;
+}
+
+.quick-card .muted,
+.hospital-card .muted,
+.department-card .muted {
+  display: block;
+  margin-top: 8rpx;
+}
+
+.section {
+  margin-top: 28rpx;
+}

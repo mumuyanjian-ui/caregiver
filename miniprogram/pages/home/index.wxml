@@ -1,0 +1,69 @@
+<view class="page-shell">
+  <view class="hero panel">
+    <view class="eyebrow">广州就医流程助手</view>
+    <view class="hero-title">陪诊通</view>
+    <view class="hero-desc muted">帮用户快速找到医院、看懂挂号检查取药流程，并在需要时一键预约陪诊。</view>
+
+    <view class="metrics">
+      <view class="metric-card">
+        <text class="metric-title">流程优先</text>
+        <text class="muted">挂号、检查、取药一站式看懂</text>
+      </view>
+      <view class="metric-card">
+        <text class="metric-title">场景清晰</text>
+        <text class="muted">老人、孕妇、儿科、术后可快速切换</text>
+      </view>
+      <view class="metric-card">
+        <text class="metric-title">服务闭环</text>
+        <text class="muted">下单后直接生成 SOP 服务进度</text>
+      </view>
+    </view>
+
+    <view class="hero-actions">
+      <view class="primary-btn" bindtap="goHospitalPage">查医院流程</view>
+      <view class="secondary-btn" bindtap="goOrderPage">立即找陪诊</view>
+    </view>
+  </view>
+
+  <view class="strip-list">
+    <view class="strip-card panel">
+      <text class="strip-label">成熟体验思路</text>
+      <text class="strip-title">入口固定、反馈即时、任务明确</text>
+    </view>
+    <view class="strip-card panel">
+      <text class="strip-label">这版重点</text>
+      <text class="strip-title">核心功能置顶，减少用户找入口成本</text>
+    </view>
+  </view>
+
+  <view class="quick-grid">
+    <view class="quick-card panel" wx:for="{{quickActions}}" wx:key="key" data-key="{{item.key}}" bindtap="handleQuickTap">
+      <text class="quick-label">{{item.title}}</text>
+      <text class="quick-title">{{item.subtitle}}</text>
+      <text class="muted">{{item.desc}}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="eyebrow">热门医院</view>
+    <view class="section-title">先看常用医院</view>
+    <view class="hospital-list">
+    <view class="hospital-card panel" wx:for="{{hospitals}}" wx:key="id">
+        <view class="card-title">{{item.name}}</view>
+        <view class="muted">{{item.district}} · {{item.subway}}</view>
+        <view class="muted">核心科室：{{item.coreDepartmentText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="eyebrow">科室推荐</view>
+    <view class="section-title">按需求找医院</view>
+    <view class="department-list">
+      <view class="department-card panel" wx:for="{{departmentMatches}}" wx:key="type">
+        <view class="card-title">{{item.type}}</view>
+        <view class="muted">{{item.note}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<view class="page-shell">
+  <view class="top-bar panel">
+    <view>
+      <view class="eyebrow">医院流程查询</view>
+      <view class="section-title">先选医院，再看任务</view>
+    </view>
+    <view class="primary-btn mini-cta" bindtap="goOrderPage">预约陪诊</view>
+  </view>
+
+  <view class="search-box panel">
+    <input placeholder="搜索医院、区、核心科室" bindinput="onSearchInput" />
+  </view>
+
+  <scroll-view class="hospital-scroll" scroll-x="true" show-scrollbar="false">
+    <view class="hospital-chip-row">
+      <view
+        class="hospital-chip {{activeHospitalId === item.id ? 'active' : ''}}"
+        wx:for="{{filteredHospitals}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="selectHospital"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="hospital-summary panel">
+    <view class="summary-title">{{activeHospital.name}}</view>
+    <view class="chip">高峰：{{activeHospital.peakHours}}</view>
+    <view class="muted">{{activeHospital.address}}</view>
+    <view class="muted">{{activeHospital.subway}} · 步行{{activeHospital.walkingDistance}}</view>
+    <view class="muted">核心科室：{{activeHospital.coreDepartmentText}}</view>
+    <view class="muted">陪诊建议：{{activeHospital.escortAdvice}}</view>
+  </view>
+
+  <scroll-view class="task-scroll" scroll-x="true" show-scrollbar="false">
+    <view class="task-row">
+      <view
+        class="task-tab {{activeTask === item.key ? 'active' : ''}}"
+        wx:for="{{taskTabs}}"
+        wx:key="key"
+        data-task="{{item.key}}"
+        bindtap="selectTask"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="task-panel panel">
+    <view class="card-title">{{activeTaskLabel}}</view>
+    <view class="muted">{{activeTaskDescription}}</view>
+    <view class="muted task-source">{{activeHospital.detailed ? activeHospital.name + ' 已配置详细流程模板。' : activeHospital.name + ' 当前展示通用流程模板。'}}</view>
+
+    <view class="step-list">
+      <view class="step-card" wx:for="{{steps}}" wx:key="title">
+        <view class="step-top">
+          <text class="step-badge">{{activeTaskLabel}}</text>
+          <text class="step-badge light">{{index + 1}}</text>
+        </view>
+        <view class="card-title">{{item.title}}</view>
+        <view class="muted">位置：{{item.location}}</view>
+        <view class="muted">操作：{{item.action}}</view>
+        <view class="muted">注意：{{item.notice}}</view>
+      </view>
+    </view>
+  </view>
+</view>

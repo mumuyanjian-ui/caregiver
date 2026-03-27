@@ -1,0 +1,9 @@
+{
+  "desc": "陪诊通小程序 sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

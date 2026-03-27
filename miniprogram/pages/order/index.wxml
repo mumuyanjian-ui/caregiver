@@ -1,0 +1,86 @@
+<view class="page-shell">
+  <view class="panel order-head">
+    <view class="eyebrow">陪诊下单</view>
+    <view class="section-title">提交需求，生成服务单</view>
+    <view class="muted">适合老人、孕妇、儿科、术后复诊等需要全流程协助的用户。</view>
+  </view>
+
+  <view class="panel form-panel">
+    <view class="field">
+      <text class="field-label">患者姓名</text>
+      <input placeholder="请输入患者姓名" data-field="patientName" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">年龄</text>
+      <input type="number" placeholder="例如 68" data-field="age" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">就诊医院</text>
+      <picker range="{{hospitalNames}}" value="{{hospitalIndex}}" data-field="hospitalIndex" bindchange="onPickerChange">
+        <view class="picker">{{hospitalNames[hospitalIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">科室类型</text>
+      <picker range="{{departmentTypes}}" value="{{departmentIndex}}" data-field="departmentIndex" bindchange="onPickerChange">
+        <view class="picker">{{departmentTypes[departmentIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">预约情况</text>
+      <picker range="{{appointmentOptions}}" value="{{appointmentIndex}}" data-field="appointmentIndex" bindchange="onPickerChange">
+        <view class="picker">{{appointmentOptions[appointmentIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">行动能力</text>
+      <picker range="{{mobilityOptions}}" value="{{mobilityIndex}}" data-field="mobilityIndex" bindchange="onPickerChange">
+        <view class="picker">{{mobilityOptions[mobilityIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="switch-row">
+      <text class="field-label">需要上门接送</text>
+      <switch color="#0f766e" checked="{{pickupNeeded}}" data-field="pickupNeeded" bindchange="onSwitchChange" />
+    </view>
+
+    <view class="switch-row">
+      <text class="field-label">需要陪同打印报告 / 取药</text>
+      <switch color="#0f766e" checked="{{reportNeeded}}" data-field="reportNeeded" bindchange="onSwitchChange" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">备注</text>
+      <textarea placeholder="例如：老人第一次去中山一院，需要协助挂号、抽血、取药。" data-field="notes" bindinput="onInput"></textarea>
+    </view>
+
+    <view class="primary-btn submit-btn" bindtap="submitOrder">生成服务单</view>
+  </view>
+
+  <view class="panel preview-panel" wx:if="{{orderPreview}}">
+    <view class="eyebrow">服务单预览</view>
+    <view class="section-title">{{orderPreview.patientName}} 的就医协助任务</view>
+    <view class="muted">{{orderPreview.hospitalName}} · {{orderPreview.departmentType}}</view>
+
+    <view class="preview-list">
+      <view class="preview-item">年龄：{{orderPreview.age}}</view>
+      <view class="preview-item">预约状态：{{orderPreview.appointmentStatus}}</view>
+      <view class="preview-item">行动能力：{{orderPreview.mobilityLevel}}</view>
+      <view class="preview-item">上门接送：{{orderPreview.pickupNeeded ? '需要' : '不需要'}}</view>
+      <view class="preview-item">报告 / 取药协助：{{orderPreview.reportNeeded ? '需要' : '不需要'}}</view>
+      <view class="preview-item">备注：{{orderPreview.notes}}</view>
+    </view>
+
+    <view class="sop-grid">
+      <view class="sop-card {{index <= (orderPreview.appointmentStatus === '未预约，需要协助挂号' ? 1 : 3) ? 'active' : ''}}" wx:for="{{sopStages}}" wx:key="*this">
+        <view class="sop-index">{{index + 1}}</view>
+        <view class="sop-title">{{item}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/hospital/index",
+    "pages/order/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "陪诊通",
+    "navigationBarBackgroundColor": "#fdf8ef",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f2e8",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#6b7280",
+    "selectedColor": "#0b5254",
+    "backgroundColor": "#fffaf2",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/hospital/index",
+        "text": "医院流程"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "陪诊下单"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

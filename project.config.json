@@ -1,0 +1,30 @@
+{
+  "description": "陪诊通微信小程序",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": false,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "ignoreUploadUnusedFiles": true,
+    "compileHotReLoad": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.6.6",
+  "appid": "touristappid",
+  "projectname": "陪诊通-miniapp",
+  "miniprogramRoot": "miniprogram",
+  "simulatorType": "wechat",
+  "srcMiniprogramRoot": "miniprogram"
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>陪诊通</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <nav class="top-nav" id="top-nav">
+        <div class="brand-block">
+          <span class="brand-mark">陪</span>
+          <div>
+            <strong>陪诊通</strong>
+            <p>广州医院流程导航</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <button class="nav-link active" data-target="hero-section">首页</button>
+          <button class="nav-link" data-target="hospital-panel">医院流程</button>
+          <button class="nav-link" data-target="task-panel">任务导航</button>
+          <button class="nav-link" data-target="department-panel">科室推荐</button>
+          <button class="nav-link" data-target="order-panel">陪诊下单</button>
+        </div>
+        <button class="primary-btn nav-cta" data-action="jump-order">立即预约</button>
+      </nav>
+
+      <header class="hero" id="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">广州就医流程助手</p>
+          <h1>陪诊通</h1>
+          <p class="hero-text">
+            帮用户快速找到医院、看懂挂号检查取药流程，并在需要时一键预约陪诊。
+          </p>
+          <div class="hero-metrics">
+            <article>
+              <strong>流程优先</strong>
+              <span>挂号、检查、取药一站式看懂</span>
+            </article>
+            <article>
+              <strong>场景清晰</strong>
+              <span>老人、孕妇、儿科、术后可快速切换</span>
+            </article>
+            <article>
+              <strong>服务闭环</strong>
+              <span>下单后直接生成 SOP 服务进度</span>
+            </article>
+          </div>
+          <div class="hero-actions">
+            <button class="primary-btn" data-action="jump-hospital">查医院流程</button>
+            <button class="secondary-btn" data-action="jump-order">立即找陪诊</button>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="status-card">
+            <span>今日重点</span>
+            <strong>先看流程，再下单陪诊</strong>
+            <p>首版已内置广州热门医院资料、中山一院详细门诊流程和任务导航。</p>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="experience-strip">
+          <div class="strip-card">
+            <span>明星产品常见体验</span>
+            <strong>入口固定、反馈即时、任务明确</strong>
+          </div>
+          <div class="strip-card">
+            <span>这版优化</span>
+            <strong>顶部置顶导航 + 分区高亮 + 快速跳转</strong>
+          </div>
+          <div class="strip-card">
+            <span>适合用户</span>
+            <strong>第一次去医院、流程复杂、需要陪诊的人</strong>
+          </div>
+        </section>
+
+        <section class="quick-grid">
+          <button class="quick-card" data-task="registration">
+            <span class="quick-label">去挂号</span>
+            <strong>预约 / 当日 / 建档</strong>
+            <p>先看最快挂号路径，再去现场。</p>
+          </button>
+          <button class="quick-card" data-task="inspection">
+            <span class="quick-label">去检查</span>
+            <strong>抽血 / CT / B超 / 内镜</strong>
+            <p>直接看到检查位置、缴费方式和候检提醒。</p>
+          </button>
+          <button class="quick-card" data-task="pharmacy">
+            <span class="quick-label">去取药</span>
+            <strong>西药 / 中药 / 急诊药</strong>
+            <p>把药房位置和核对重点放在一个页面。</p>
+          </button>
+          <button class="quick-card" data-action="jump-order">
+            <span class="quick-label">找陪诊</span>
+            <strong>老人 / 孕妇 / 儿科 / 术后</strong>
+            <p>提交需求后立即生成服务单和进度预览。</p>
+          </button>
+        </section>
+
+        <section class="panel" id="hospital-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">医院流程查询</p>
+              <h2>先选医院或科室</h2>
+            </div>
+            <div class="filters">
+              <input id="hospital-search" type="search" placeholder="搜索医院、区、核心科室" />
+              <select id="department-filter">
+                <option value="">按科室类型筛选</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="hospital-layout">
+            <aside class="hospital-list" id="hospital-list"></aside>
+            <section class="hospital-detail" id="hospital-detail"></section>
+          </div>
+        </section>
+
+        <section class="panel task-panel" id="task-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">院内任务导航</p>
+              <h2>我现在要做什么</h2>
+            </div>
+            <div class="task-tabs" id="task-tabs"></div>
+          </div>
+          <div id="task-content" class="task-content"></div>
+        </section>
+
+        <section class="panel" id="department-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">科室推荐</p>
+              <h2>按需求找更适合的医院</h2>
+            </div>
+          </div>
+          <div id="department-grid" class="department-grid"></div>
+        </section>
+
+        <section class="panel order-panel" id="order-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">陪诊下单</p>
+              <h2>提交需求，生成陪诊服务单</h2>
+            </div>
+          </div>
+
+          <div class="order-layout">
+            <form id="escort-form" class="escort-form">
+              <label>
+                患者姓名
+                <input name="patientName" required placeholder="请输入患者姓名" />
+              </label>
+              <label>
+                年龄
+                <input name="age" type="number" min="0" placeholder="例如 68" />
+              </label>
+              <label>
+                就诊医院
+                <select name="hospitalId" id="order-hospital-select" required></select>
+              </label>
+              <label>
+                科室类型
+                <select name="departmentType" id="order-department-select" required></select>
+              </label>
+              <label>
+                预约情况
+                <select name="appointmentStatus">
+                  <option>已预约</option>
+                  <option>未预约，需要协助挂号</option>
+                  <option>不确定</option>
+                </select>
+              </label>
+              <label>
+                行动能力
+                <select name="mobilityLevel">
+                  <option>可自行行走</option>
+                  <option>需搀扶</option>
+                  <option>轮椅需求</option>
+                  <option>术后行动不便</option>
+                </select>
+              </label>
+              <label class="inline-check">
+                <input name="pickupNeeded" type="checkbox" />
+                需要上门接送
+              </label>
+              <label class="inline-check">
+                <input name="reportNeeded" type="checkbox" />
+                需要陪同打印报告 / 取药
+              </label>
+              <label class="full">
+                备注
+                <textarea
+                  name="notes"
+                  rows="4"
+                  placeholder="例如：老人第一次去中山一院，需要协助挂号、抽血、取药。"
+                ></textarea>
+              </label>
+              <button class="primary-btn" type="submit">生成服务单</button>
+            </form>
+
+            <div class="order-output" id="order-output">
+              <div class="empty-state">
+                <h3>服务单预览</h3>
+                <p>提交表单后，这里会生成陪诊任务摘要和 SOP 进度。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <button class="floating-cta" data-action="jump-order">预约陪诊</button>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

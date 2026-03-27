@@ -1,0 +1,98 @@
+.order-head,
+.form-panel,
+.preview-panel {
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+}
+
+.field {
+  margin-bottom: 20rpx;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1f2a24;
+}
+
+.field input,
+.picker,
+.field textarea {
+  width: 100%;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: #ffffff;
+  color: #1f2a24;
+}
+
+.field textarea {
+  min-height: 180rpx;
+}
+
+.switch-row {
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 8rpx;
+}
+
+.preview-list {
+  display: grid;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.preview-item {
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.76);
+  color: #5f6d66;
+}
+
+.sop-grid {
+  display: grid;
+  gap: 14rpx;
+  margin-top: 20rpx;
+}
+
+.sop-card {
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1rpx solid rgba(44, 66, 55, 0.08);
+}
+
+.sop-card.active {
+  background: rgba(15, 118, 110, 0.1);
+  border-color: rgba(15, 118, 110, 0.3);
+}
+
+.sop-index {
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(15, 118, 110, 0.14);
+  color: #0b5254;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.sop-title {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1f2a24;
+}
