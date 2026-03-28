@@ -8,41 +8,39 @@
   </view>
 
   <view class="search-box panel">
-    <input placeholder="搜索医院、区、核心科室" bindinput="onSearchInput" />
+    <input placeholder="搜索医院、区、核心科室" bindinput="onSearchInput" value="{{searchKeyword}}" />
+    <view class="search-clear" wx:if="{{searchKeyword}}" bindtap="clearSearch">×</view>
   </view>
 
   <scroll-view class="hospital-scroll" scroll-x="true" show-scrollbar="false">
     <view class="hospital-chip-row">
-      <view
-        class="hospital-chip {{activeHospitalId === item.id ? 'active' : ''}}"
-        wx:for="{{filteredHospitals}}"
-        wx:key="id"
-        data-id="{{item.id}}"
-        bindtap="selectHospital"
-      >
+      <view class="hospital-chip {{activeHospitalId === item.id ? '"'"'active'"'"' : '"'"''"'"'}}" wx:for="{{filteredHospitals}}" wx:key="id" data-id="{{item.id}}" bindtap="selectHospital">
         {{item.name}}
       </view>
     </view>
   </scroll-view>
 
-  <view class="hospital-summary panel">
-    <view class="summary-title">{{activeHospital.name}}</view>
-    <view class="chip">高峰：{{activeHospital.peakHours}}</view>
+  <!-- 加载状态 -->
+  <view class="loading-tip" wx:if="{{isLoading}}">
+    <view class="loading-spinner-small"></view>
+    <text>加载中...</text>
+  </view>
+
+  <view class="hospital-summary panel" wx:else>
+    <view class="summary-header">
+      <view class="summary-title">{{activeHospital.name}}</view>
+      <view class="peak-badge" wx:if="{{activeHospital.peakHours}}">高峰：{{activeHospital.peakHours}}</view>
+    </view>
     <view class="muted">{{activeHospital.address}}</view>
     <view class="muted">{{activeHospital.subway}} · 步行{{activeHospital.walkingDistance}}</view>
     <view class="muted">核心科室：{{activeHospital.coreDepartmentText}}</view>
     <view class="muted">陪诊建议：{{activeHospital.escortAdvice}}</view>
+    <view class="detail-badge" wx:if="{{activeHospital.detailed}}">✓ 已完善流程</view>
   </view>
 
   <scroll-view class="task-scroll" scroll-x="true" show-scrollbar="false">
     <view class="task-row">
-      <view
-        class="task-tab {{activeTask === item.key ? 'active' : ''}}"
-        wx:for="{{taskTabs}}"
-        wx:key="key"
-        data-task="{{item.key}}"
-        bindtap="selectTask"
-      >
+      <view class="task-tab {{activeTask === item.key ? '"'"'active'"'"' : '"'"''"'"'}}" wx:for="{{taskTabs}}" wx:key="key" data-task="{{item.key}}" bindtap="selectTask">
         {{item.label}}
       </view>
     </view>
@@ -51,19 +49,29 @@
   <view class="task-panel panel">
     <view class="card-title">{{activeTaskLabel}}</view>
     <view class="muted">{{activeTaskDescription}}</view>
-    <view class="muted task-source">{{activeHospital.detailed ? activeHospital.name + ' 已配置详细流程模板。' : activeHospital.name + ' 当前展示通用流程模板。'}}</view>
+    <view class="muted task-source">{{activeHospital.detailed ? activeHospital.name + '"'"' 已配置详细流程模板。'"'"' : activeHospital.name + '"'"' 当前展示通用流程模板。'"'"'}}</view>
 
     <view class="step-list">
-      <view class="step-card" wx:for="{{steps}}" wx:key="title">
+      <view class="step-card {{item.completed ? '"'"'completed'"'"' : '"'"''"'"'}}" wx:for="{{steps}}" wx:key="title">
         <view class="step-top">
-          <text class="step-badge">{{activeTaskLabel}}</text>
-          <text class="step-badge light">{{index + 1}}</text>
+          <text class="step-badge {{item.completed ? '"'"'done'"'"' : ''}}">{{item.completed ? '"'"'✓'"'"' : activeTaskLabel}}</text>
+          <text class="step-badge light">第{{index + 1}}步</text>
         </view>
         <view class="card-title">{{item.title}}</view>
         <view class="muted">位置：{{item.location}}</view>
         <view class="muted">操作：{{item.action}}</view>
-        <view class="muted">注意：{{item.notice}}</view>
+        <view class="muted notice">⚠️ {{item.notice}}</view>
       </view>
     </view>
+
+    <!-- 空步骤提示 -->
+    <view class="empty-steps" wx:if="{{!steps || steps.length === 0}}">
+      <text>暂无流程步骤，请选择其他任务</text>
+    </view>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <view class="bottom-action">
+    <button class="action-btn primary" bindtap="goOrderPage">预约陪诊服务</button>
   </view>
 </view>

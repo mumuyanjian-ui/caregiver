@@ -1,3 +1,23 @@
+/* 紧急呼叫按钮 */
+.emergency-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: #fff;
+  font-weight: 700;
+}
+
+.emergency-icon {
+  font-size: 32rpx;
+}
+
+.emergency-text {
+  font-size: 30rpx;
+}
+
 .order-head,
 .form-panel,
 .preview-panel {
@@ -95,4 +115,117 @@
   font-size: 28rpx;
   font-weight: 700;
   color: #1f2a24;
+}
+
+/* 进度模拟样式 */
+.progress-panel {
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.05) 0%, rgba(15, 118, 110, 0.1) 100%);
+}
+
+.progress-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  position: relative;
+}
+
+.progress-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: #ccc;
+  border: 4rpx solid #fff;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.progress-item.active .progress-dot {
+  background: #0f766e;
+}
+
+.progress-item.current .progress-dot {
+  background: #0f766e;
+  box-shadow: 0 0 0 8rpx rgba(15, 118, 110, 0.2);
+}
+
+.progress-line {
+  position: absolute;
+  left: 10rpx;
+  top: 32rpx;
+  width: 4rpx;
+  height: 40rpx;
+  background: #ccc;
+}
+
+.progress-item.active .progress-line {
+  background: #0f766e;
+}
+
+.progress-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.progress-item.active .progress-label {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.progress-item.current .progress-label {
+  color: #0f766e;
+}
+
+/* 模拟进度按钮 */
+.progress-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.progress-btn {
+  flex: 1;
+  padding: 20rpx;
+  background: #0f766e;
+  color: #fff;
+  border-radius: 18rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  border: none;
+}
+
+.progress-btn.reset {
+  background: #6b7280;
+}
+
+/* 空状态提示 */
+.empty-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 40rpx;
+  margin: 20rpx;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24rpx;
+  border: 2rpx dashed rgba(15, 118, 110, 0.2);
+}
+
+.empty-icon {
+  font-size: 64rpx;
+  margin-bottom: 16rpx;
+}
+
+.empty-text {
+  font-size: 26rpx;
+  color: #6b7280;
+  text-align: center;
 }

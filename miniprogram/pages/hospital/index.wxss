@@ -10,11 +10,25 @@
   margin-top: 18rpx;
 }
 
+.search-box {
+  position: relative;
+}
+
 .search-box input {
   width: 100%;
-  padding: 18rpx 20rpx;
+  padding: 18rpx 50rpx 18rpx 20rpx;
   border-radius: 18rpx;
   background: #ffffff;
+}
+
+.search-clear {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40rpx;
+  color: #999;
+  padding: 10rpx;
 }
 
 .hospital-scroll,
@@ -51,6 +65,32 @@
   color: #1f2a24;
 }
 
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12rpx;
+}
+
+.peak-badge {
+  padding: 8rpx 16rpx;
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.detail-badge {
+  display: inline-block;
+  margin-top: 16rpx;
+  padding: 8rpx 16rpx;
+  background: rgba(15, 118, 110, 0.1);
+  color: #0f766e;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
 .hospital-summary .muted {
   display: block;
   margin-top: 10rpx;
@@ -60,6 +100,31 @@
   margin-top: 8rpx;
 }
 
+/* 加载状态 */
+.loading-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 20rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+
+.loading-spinner-small {
+  width: 32rpx;
+  height: 32rpx;
+  border: 3rpx solid #e5e7eb;
+  border-top-color: #0f766e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 步骤状态 */
 .step-list {
   display: grid;
   gap: 16rpx;
@@ -71,6 +136,12 @@
   border-radius: 20rpx;
   background: rgba(255, 255, 255, 0.75);
   border: 1rpx solid rgba(44, 66, 55, 0.08);
+  transition: all 0.3s ease;
+}
+
+.step-card.completed {
+  background: rgba(15, 118, 110, 0.08);
+  border-color: rgba(15, 118, 110, 0.2);
 }
 
 .step-top {
@@ -87,6 +158,11 @@
   font-size: 22rpx;
 }
 
+.step-badge.done {
+  background: #0f766e;
+  color: #fff;
+}
+
 .step-badge.light {
   background: rgba(31, 42, 36, 0.06);
 }
@@ -94,4 +170,43 @@
 .step-card .muted {
   display: block;
   margin-top: 8rpx;
+}
+
+.step-card .notice {
+  color: #d97706;
+  font-weight: 600;
+}
+
+/* 空步骤提示 */
+.empty-steps {
+  padding: 40rpx;
+  text-align: center;
+  color: #6b7280;
+  font-size: 28rpx;
+}
+
+/* 底部操作按钮 */
+.bottom-action {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 24rpx;
+  background: #fff;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 24rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  border: none;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #0f766e 0%, #0b5254 100%);
+  color: #fff;
 }

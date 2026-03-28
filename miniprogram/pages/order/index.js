@@ -17,7 +17,10 @@ Page({
     pickupNeeded: false,
     reportNeeded: false,
     orderPreview: null,
-    sopStages
+    sopStages,
+    showProgress: false,
+    currentProgress: 0,
+    progressIndex: 0
   },
 
   onInput(event) {
@@ -41,16 +44,52 @@ Page({
     });
   },
 
+  callEmergency() {
+    wx.showModal({
+      title: "紧急呼叫",
+      content: "是否拨打陪诊服务热线？",
+      confirmText: "拨打",
+      confirmColor: "#e74c3c",
+      success: (res) => {
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: "400-888-9999",
+            fail: () => {
+              wx.showToast({
+                title: "无法拨打电话",
+                icon: "none"
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+
+  simulateProgress() {
+    const that = this;
+    this.setData({ showProgress: true });
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress++;
+      if (progress >= 10) {
+        clearInterval(interval);
+        wx.showToast({ title: "服务已完成！", icon: "success" });
+      }
+      that.setData({ currentProgress: progress, progressIndex: progress });
+    }, 1500);
+  },
+
+  resetProgress() {
+    this.setData({ showProgress: false, currentProgress: 0, progressIndex: 0 });
+  },
+
   submitOrder() {
     const patientName = this.data.patientName || "";
     if (!patientName.trim()) {
-      wx.showToast({
-        title: "请先填写患者姓名",
-        icon: "none"
-      });
+      wx.showToast({ title: "请先填写患者姓名", icon: "none" });
       return;
     }
-
     const preview = {
       patientName: patientName.trim(),
       age: this.data.age || "未填写",
@@ -62,9 +101,6 @@ Page({
       reportNeeded: this.data.reportNeeded,
       notes: this.data.notes || "无"
     };
-
-    this.setData({
-      orderPreview: preview
-    });
+    this.setData({ orderPreview: preview, showProgress: false, currentProgress: 0, progressIndex: 0 });
   }
 });

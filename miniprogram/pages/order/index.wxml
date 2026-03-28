@@ -1,4 +1,10 @@
 <view class="page-shell">
+  <!-- 紧急呼叫按钮 -->
+  <view class="emergency-bar" bindtap="callEmergency">
+    <text class="emergency-icon">📞</text>
+    <text class="emergency-text">紧急呼叫</text>
+  </view>
+
   <view class="panel order-head">
     <view class="eyebrow">陪诊下单</view>
     <view class="section-title">提交需求，生成服务单</view>
@@ -62,6 +68,18 @@
     <view class="primary-btn submit-btn" bindtap="submitOrder">生成服务单</view>
   </view>
 
+  <!-- 服务进度展示 -->
+  <view class="panel progress-panel" wx:if="{{orderPreview && showProgress}}">
+    <view class="eyebrow">服务进度</view>
+    <view class="progress-timeline">
+      <view class="progress-item {{currentProgress >= index ? 'active' : ''}} {{currentProgress === index ? 'current' : ''}}" wx:for="{{sopStages}}" wx:key="*this">
+        <view class="progress-dot"></view>
+        <view class="progress-line" wx:if="{{index < sopStages.length - 1}}"></view>
+        <view class="progress-label">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
   <view class="panel preview-panel" wx:if="{{orderPreview}}">
     <view class="eyebrow">服务单预览</view>
     <view class="section-title">{{orderPreview.patientName}} 的就医协助任务</view>
@@ -77,10 +95,22 @@
     </view>
 
     <view class="sop-grid">
-      <view class="sop-card {{index <= (orderPreview.appointmentStatus === '未预约，需要协助挂号' ? 1 : 3) ? 'active' : ''}}" wx:for="{{sopStages}}" wx:key="*this">
+      <view class="sop-card {{index <= progressIndex ? 'active' : ''}}" wx:for="{{sopStages}}" wx:key="*this">
         <view class="sop-index">{{index + 1}}</view>
         <view class="sop-title">{{item}}</view>
       </view>
     </view>
+
+    <!-- 模拟进度按钮 -->
+    <view class="progress-actions" wx:if="{{orderPreview}}">
+      <button class="progress-btn" bindtap="simulateProgress">模拟服务进度</button>
+      <button class="progress-btn reset" bindtap="resetProgress" wx:if="{{showProgress}}">重置</button>
+    </view>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view class="empty-tip" wx:if="{{!orderPreview}}">
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">填写上方信息，生成服务单后可查看陪诊流程</text>
   </view>
 </view>
