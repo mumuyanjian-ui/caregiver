@@ -1,13 +1,15 @@
-/* 紧急呼叫按钮 */
 .emergency-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12rpx;
-  padding: 24rpx;
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  margin-bottom: 18rpx;
+  padding: 22rpx 24rpx;
+  border-radius: 26rpx;
+  background: linear-gradient(135deg, #0e7490 0%, #0f766e 100%);
   color: #fff;
   font-weight: 700;
+  box-shadow: 0 16rpx 30rpx rgba(14, 116, 144, 0.18);
 }
 
 .emergency-icon {
@@ -20,13 +22,18 @@
 
 .order-head,
 .form-panel,
-.preview-panel {
-  padding: 24rpx;
+.preview-panel,
+.progress-panel {
+  padding: 26rpx;
   margin-bottom: 18rpx;
 }
 
+.order-head {
+  background: linear-gradient(145deg, rgba(247, 255, 255, 0.95), rgba(239, 251, 249, 0.94));
+}
+
 .field {
-  margin-bottom: 20rpx;
+  margin-bottom: 22rpx;
 }
 
 .field-label {
@@ -34,7 +41,7 @@
   margin-bottom: 10rpx;
   font-size: 28rpx;
   font-weight: 700;
-  color: #1f2a24;
+  color: #15343b;
 }
 
 .field input,
@@ -42,9 +49,10 @@
 .field textarea {
   width: 100%;
   padding: 18rpx 20rpx;
-  border-radius: 18rpx;
-  background: #ffffff;
-  color: #1f2a24;
+  border-radius: 20rpx;
+  background: #f8fcfc;
+  border: 1rpx solid rgba(14, 116, 144, 0.08);
+  color: #14323a;
 }
 
 .field textarea {
@@ -58,8 +66,9 @@
   justify-content: space-between;
   gap: 16rpx;
   padding: 18rpx 20rpx;
-  border-radius: 18rpx;
-  background: rgba(255, 255, 255, 0.72);
+  border-radius: 20rpx;
+  background: rgba(248, 253, 253, 0.95);
+  border: 1rpx solid rgba(13, 148, 136, 0.08);
 }
 
 .submit-btn {
@@ -75,37 +84,38 @@
 
 .preview-item {
   padding: 18rpx 20rpx;
-  border-radius: 18rpx;
-  background: rgba(255, 255, 255, 0.76);
-  color: #5f6d66;
+  border-radius: 20rpx;
+  background: rgba(248, 253, 253, 0.95);
+  border: 1rpx solid rgba(13, 148, 136, 0.08);
+  color: #60767d;
 }
 
 .sop-grid {
   display: grid;
   gap: 14rpx;
-  margin-top: 20rpx;
+  margin-top: 22rpx;
 }
 
 .sop-card {
   padding: 20rpx;
-  border-radius: 20rpx;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1rpx solid rgba(44, 66, 55, 0.08);
+  border-radius: 22rpx;
+  background: rgba(248, 253, 253, 0.95);
+  border: 1rpx solid rgba(13, 148, 136, 0.08);
 }
 
 .sop-card.active {
-  background: rgba(15, 118, 110, 0.1);
-  border-color: rgba(15, 118, 110, 0.3);
+  background: linear-gradient(145deg, rgba(221, 250, 246, 0.95), rgba(236, 254, 255, 0.96));
+  border-color: rgba(13, 148, 136, 0.2);
 }
 
 .sop-index {
-  width: 44rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 46rpx;
+  height: 46rpx;
+  line-height: 46rpx;
   text-align: center;
   border-radius: 50%;
-  background: rgba(15, 118, 110, 0.14);
-  color: #0b5254;
+  background: rgba(20, 184, 166, 0.14);
+  color: #0f766e;
   font-size: 24rpx;
   font-weight: 700;
 }
@@ -114,20 +124,17 @@
   margin-top: 12rpx;
   font-size: 28rpx;
   font-weight: 700;
-  color: #1f2a24;
+  color: #14323a;
 }
 
-/* 进度模拟样式 */
 .progress-panel {
-  padding: 24rpx;
-  margin-bottom: 18rpx;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.05) 0%, rgba(15, 118, 110, 0.1) 100%);
+  background: linear-gradient(145deg, rgba(236, 254, 255, 0.95), rgba(236, 253, 245, 0.92));
 }
 
 .progress-timeline {
   display: flex;
   flex-direction: column;
-  gap: 16rpx;
+  gap: 18rpx;
   margin-top: 20rpx;
 }
 
@@ -142,9 +149,9 @@
   width: 24rpx;
   height: 24rpx;
   border-radius: 50%;
-  background: #ccc;
+  background: #cbd5da;
   border: 4rpx solid #fff;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
   z-index: 1;
 }
 
@@ -153,8 +160,8 @@
 }
 
 .progress-item.current .progress-dot {
-  background: #0f766e;
-  box-shadow: 0 0 0 8rpx rgba(15, 118, 110, 0.2);
+  background: #0891b2;
+  box-shadow: 0 0 0 8rpx rgba(14, 165, 164, 0.18);
 }
 
 .progress-line {
@@ -163,60 +170,55 @@
   top: 32rpx;
   width: 4rpx;
   height: 40rpx;
-  background: #ccc;
+  background: #d6e1e3;
 }
 
 .progress-item.active .progress-line {
-  background: #0f766e;
+  background: linear-gradient(180deg, #0891b2 0%, #0f766e 100%);
 }
 
 .progress-label {
   font-size: 26rpx;
-  color: #666;
+  color: #61797f;
 }
 
-.progress-item.active .progress-label {
+.progress-item.active .progress-label,
+.progress-item.current .progress-label {
   color: #0f766e;
   font-weight: 700;
 }
 
-.progress-item.current .progress-label {
-  color: #0f766e;
-}
-
-/* 模拟进度按钮 */
 .progress-actions {
   display: flex;
-  gap: 20rpx;
+  gap: 18rpx;
   margin-top: 24rpx;
 }
 
 .progress-btn {
   flex: 1;
   padding: 20rpx;
-  background: #0f766e;
+  background: linear-gradient(135deg, #0891b2 0%, #0f766e 100%);
   color: #fff;
-  border-radius: 18rpx;
+  border-radius: 20rpx;
   font-size: 28rpx;
   font-weight: 700;
   border: none;
 }
 
 .progress-btn.reset {
-  background: #6b7280;
+  background: #7b9198;
 }
 
-/* 空状态提示 */
 .empty-tip {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60rpx 40rpx;
-  margin: 20rpx;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 24rpx;
-  border: 2rpx dashed rgba(15, 118, 110, 0.2);
+  padding: 70rpx 40rpx;
+  margin-top: 10rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 28rpx;
+  border: 2rpx dashed rgba(13, 148, 136, 0.22);
 }
 
 .empty-icon {
@@ -226,6 +228,6 @@
 
 .empty-text {
   font-size: 26rpx;
-  color: #6b7280;
+  color: #698188;
   text-align: center;
 }

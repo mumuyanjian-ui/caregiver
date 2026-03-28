@@ -1,21 +1,22 @@
 page {
   background:
-    radial-gradient(circle at top left, rgba(217, 119, 6, 0.16), transparent 28%),
-    radial-gradient(circle at top right, rgba(15, 118, 110, 0.2), transparent 32%),
-    linear-gradient(180deg, #fdf8ef 0%, #f7f2e8 55%, #efe4d1 100%);
-  color: #1f2a24;
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.2), transparent 34%),
+    linear-gradient(180deg, #f4fbfb 0%, #edf8f7 48%, #e3f0ef 100%);
+  color: #14323a;
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 .page-shell {
-  padding: 24rpx 24rpx 40rpx;
+  min-height: 100vh;
+  padding: 24rpx 24rpx 140rpx;
 }
 
 .panel {
-  background: rgba(255, 252, 247, 0.92);
-  border: 1rpx solid rgba(44, 66, 55, 0.12);
-  border-radius: 28rpx;
-  box-shadow: 0 20rpx 48rpx rgba(51, 58, 53, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1rpx solid rgba(17, 94, 89, 0.1);
+  border-radius: 32rpx;
+  box-shadow: 0 24rpx 60rpx rgba(27, 84, 87, 0.08);
 }
 
 .eyebrow {
@@ -26,15 +27,16 @@ page {
 }
 
 .section-title {
-  margin-top: 8rpx;
-  font-size: 40rpx;
+  margin-top: 10rpx;
+  font-size: 42rpx;
   font-weight: 700;
-  color: #1f2a24;
+  line-height: 1.25;
+  color: #14323a;
 }
 
 .muted {
-  color: #5f6d66;
-  line-height: 1.7;
+  color: #60767d;
+  line-height: 1.72;
 }
 
 .chip {
@@ -42,31 +44,34 @@ page {
   align-items: center;
   padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  background: rgba(15, 118, 110, 0.1);
-  color: #0b5254;
+  background: rgba(13, 148, 136, 0.1);
+  color: #0f766e;
   font-size: 24rpx;
+  font-weight: 600;
 }
 
 .primary-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20rpx 28rpx;
+  padding: 22rpx 30rpx;
   border-radius: 999rpx;
-  background: linear-gradient(135deg, #0f766e 0%, #0b5254 100%);
+  background: linear-gradient(135deg, #0ea5a4 0%, #0f766e 58%, #155e75 100%);
   color: #ffffff;
   font-size: 28rpx;
   font-weight: 700;
+  box-shadow: 0 16rpx 30rpx rgba(15, 118, 110, 0.2);
 }
 
 .secondary-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20rpx 28rpx;
+  padding: 22rpx 30rpx;
   border-radius: 999rpx;
-  background: rgba(15, 118, 110, 0.1);
-  color: #0b5254;
+  background: rgba(14, 165, 164, 0.1);
+  color: #0f766e;
+  border: 1rpx solid rgba(14, 165, 164, 0.18);
   font-size: 28rpx;
   font-weight: 700;
 }

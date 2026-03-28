@@ -2,33 +2,43 @@
 .search-box,
 .hospital-summary,
 .task-panel {
-  padding: 24rpx;
+  padding: 26rpx;
   margin-bottom: 18rpx;
 }
 
+.top-bar {
+  background: linear-gradient(145deg, rgba(247, 255, 255, 0.95), rgba(239, 251, 249, 0.94));
+}
+
 .mini-cta {
-  margin-top: 18rpx;
+  margin-top: 20rpx;
 }
 
 .search-box {
   position: relative;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .search-box input {
   width: 100%;
-  padding: 18rpx 50rpx 18rpx 20rpx;
-  border-radius: 18rpx;
-  background: #ffffff;
+  padding: 18rpx 108rpx 18rpx 22rpx;
+  border-radius: 20rpx;
+  background: #f7fcfc;
+  border: 1rpx solid rgba(14, 116, 144, 0.08);
+  color: #14323a;
 }
 
 .search-clear {
   position: absolute;
-  right: 20rpx;
+  right: 22rpx;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40rpx;
-  color: #999;
-  padding: 10rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0891b2;
+  padding: 10rpx 14rpx;
+  border-radius: 999rpx;
+  background: rgba(34, 211, 238, 0.12);
 }
 
 .hospital-scroll,
@@ -45,50 +55,40 @@
 
 .hospital-chip,
 .task-tab {
-  padding: 16rpx 22rpx;
+  padding: 16rpx 24rpx;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.7);
-  color: #5f6d66;
-  border: 1rpx solid rgba(44, 66, 55, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  color: #5d757b;
+  border: 1rpx solid rgba(13, 148, 136, 0.1);
 }
 
 .hospital-chip.active,
 .task-tab.active {
-  background: #0b5254;
+  background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
   color: #ffffff;
+  box-shadow: 0 12rpx 24rpx rgba(15, 118, 110, 0.18);
+}
+
+.hospital-summary {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(239, 251, 249, 0.94));
 }
 
 .summary-title,
 .card-title {
   font-size: 32rpx;
   font-weight: 700;
-  color: #1f2a24;
-}
-
-.summary-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12rpx;
-}
-
-.peak-badge {
-  padding: 8rpx 16rpx;
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-  border-radius: 8rpx;
-  font-size: 24rpx;
-  font-weight: 700;
+  color: #15343b;
 }
 
 .detail-badge {
   display: inline-block;
   margin-top: 16rpx;
-  padding: 8rpx 16rpx;
-  background: rgba(15, 118, 110, 0.1);
+  padding: 10rpx 18rpx;
+  background: rgba(14, 165, 164, 0.12);
   color: #0f766e;
-  border-radius: 8rpx;
+  border-radius: 999rpx;
   font-size: 24rpx;
+  font-weight: 700;
 }
 
 .hospital-summary .muted {
@@ -96,35 +96,14 @@
   margin-top: 10rpx;
 }
 
+.task-panel {
+  margin-bottom: 120rpx;
+}
+
 .task-source {
   margin-top: 8rpx;
 }
 
-/* 加载状态 */
-.loading-tip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12rpx;
-  padding: 20rpx;
-  color: #6b7280;
-  font-size: 26rpx;
-}
-
-.loading-spinner-small {
-  width: 32rpx;
-  height: 32rpx;
-  border: 3rpx solid #e5e7eb;
-  border-top-color: #0f766e;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* 步骤状态 */
 .step-list {
   display: grid;
   gap: 16rpx;
@@ -132,16 +111,11 @@
 }
 
 .step-card {
-  padding: 20rpx;
-  border-radius: 20rpx;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1rpx solid rgba(44, 66, 55, 0.08);
-  transition: all 0.3s ease;
-}
-
-.step-card.completed {
-  background: rgba(15, 118, 110, 0.08);
-  border-color: rgba(15, 118, 110, 0.2);
+  padding: 22rpx;
+  border-radius: 24rpx;
+  background: rgba(248, 253, 253, 0.95);
+  border: 1rpx solid rgba(13, 148, 136, 0.1);
+  box-shadow: inset 0 0 0 1rpx rgba(255, 255, 255, 0.6);
 }
 
 .step-top {
@@ -153,18 +127,15 @@
 .step-badge {
   padding: 8rpx 14rpx;
   border-radius: 999rpx;
-  background: rgba(15, 118, 110, 0.12);
-  color: #0b5254;
+  background: rgba(20, 184, 166, 0.12);
+  color: #0f766e;
   font-size: 22rpx;
-}
-
-.step-badge.done {
-  background: #0f766e;
-  color: #fff;
+  font-weight: 700;
 }
 
 .step-badge.light {
-  background: rgba(31, 42, 36, 0.06);
+  background: rgba(14, 116, 144, 0.08);
+  color: #155e75;
 }
 
 .step-card .muted {
@@ -173,40 +144,39 @@
 }
 
 .step-card .notice {
-  color: #d97706;
+  color: #0e7490;
   font-weight: 600;
 }
 
-/* 空步骤提示 */
 .empty-steps {
   padding: 40rpx;
   text-align: center;
-  color: #6b7280;
+  color: #6c848b;
   font-size: 28rpx;
 }
 
-/* 底部操作按钮 */
 .bottom-action {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20rpx 24rpx;
-  background: #fff;
-  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
+  padding: 20rpx 24rpx 28rpx;
+  background: linear-gradient(180deg, rgba(239, 248, 248, 0.25), rgba(255, 255, 255, 0.98) 35%);
+  box-shadow: 0 -8rpx 30rpx rgba(21, 94, 117, 0.06);
   z-index: 100;
 }
 
 .action-btn {
   width: 100%;
   padding: 24rpx;
-  border-radius: 50rpx;
+  border-radius: 999rpx;
   font-size: 32rpx;
   font-weight: 700;
   border: none;
 }
 
 .action-btn.primary {
-  background: linear-gradient(135deg, #0f766e 0%, #0b5254 100%);
+  background: linear-gradient(135deg, #0891b2 0%, #0f766e 100%);
   color: #fff;
+  box-shadow: 0 16rpx 30rpx rgba(14, 116, 144, 0.2);
 }
