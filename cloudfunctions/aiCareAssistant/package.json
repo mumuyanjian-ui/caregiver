@@ -1,0 +1,9 @@
+{
+  "name": "ai-care-assistant",
+  "version": "1.0.0",
+  "description": "AI assistant for caregiver miniapp",
+  "main": "index.js",
+  "dependencies": {
+    "openai": "^5.0.0"
+  }
+}

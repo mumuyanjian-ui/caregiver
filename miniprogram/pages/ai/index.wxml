@@ -1,0 +1,74 @@
+<view class="page-shell">
+  <view class="panel ai-head">
+    <view class="eyebrow">AI就医助手</view>
+    <view class="section-title">让 AI 帮你更快完成就医准备</view>
+    <view class="muted">适合做科室建议、就医准备清单、检查结果解释和看病沟通整理。</view>
+    <view class="cloud-tip {{cloudReady ? 'ready' : 'warning'}}">
+      {{cloudReady ? '云开发已连接，AI 可通过云函数调用。' : '请先在 app.js 里配置云开发环境 ID，并部署 aiCareAssistant 云函数。'}}
+    </view>
+  </view>
+
+  <scroll-view class="scene-scroll" scroll-x="true" show-scrollbar="false">
+    <view class="scene-row">
+      <view
+        class="scene-chip {{item.active ? 'active' : ''}}"
+        wx:for="{{sceneTabs}}"
+        wx:key="key"
+        data-scene="{{item.key}}"
+        bindtap="selectScene"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="panel ai-form">
+    <view class="field">
+      <text class="field-label">目标医院</text>
+      <picker range="{{hospitalNames}}" value="{{hospitalIndex}}" bindchange="onPickerChange">
+        <view class="picker">{{hospitalNames[hospitalIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">患者年龄</text>
+      <input type="number" placeholder="例如 68" data-field="patientAge" bindinput="onInput" value="{{patientAge}}" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">描述内容</text>
+      <textarea
+        placeholder="{{promptPlaceholder}}"
+        data-field="inputText"
+        bindinput="onInput"
+        value="{{inputText}}"
+      ></textarea>
+    </view>
+
+    <view class="primary-btn submit-btn" bindtap="runAssistant">{{isLoading ? 'AI 思考中...' : '生成 AI 建议'}}</view>
+  </view>
+
+  <view class="panel ai-result" wx:if="{{result}}">
+    <view class="eyebrow">AI结果</view>
+    <view class="section-title">建议输出</view>
+    <view class="result-card">
+      <text class="result-text">{{result}}</text>
+    </view>
+  </view>
+
+  <view class="panel ai-tips" wx:if="{{!result}}">
+    <view class="eyebrow">建议用法</view>
+    <view class="tip-card">
+      <text class="tip-title">科室建议</text>
+      <text class="muted">描述症状、持续时间、年龄和担忧点，AI 会给出推荐挂号方向。</text>
+    </view>
+    <view class="tip-card">
+      <text class="tip-title">就医准备</text>
+      <text class="muted">输入医院和就医目的，AI 会整理证件、资料、流程重点。</text>
+    </view>
+    <view class="tip-card">
+      <text class="tip-title">报告解释</text>
+      <text class="muted">输入检查结论，AI 会用更通俗的话解释，但不替代医生诊断。</text>
+    </view>
+  </view>
+</view>

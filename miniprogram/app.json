@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/index",
     "pages/hospital/index",
+    "pages/ai/index",
     "pages/order/index",
     "pages/orders/index"
   ],
@@ -26,6 +27,10 @@
       {
         "pagePath": "pages/hospital/index",
         "text": "医院流程"
+      },
+      {
+        "pagePath": "pages/ai/index",
+        "text": "AI助手"
       },
       {
         "pagePath": "pages/order/index",

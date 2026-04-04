@@ -19,6 +19,7 @@ Page({
       { key: "registration", title: "去挂号", subtitle: "预约 / 当日 / 建档", desc: "先看最快挂号路径，再去现场。" },
       { key: "inspection", title: "去检查", subtitle: "抽血 / CT / B超 / 内镜", desc: "直接看到检查位置、缴费方式和候检提醒。" },
       { key: "pharmacy", title: "去取药", subtitle: "西药 / 中药 / 急诊药", desc: "把药房位置和核对重点放在一个页面。" },
+      { key: "ai", title: "AI助手", subtitle: "科室建议 / 就医准备 / 报告解释", desc: "快速生成就医建议和沟通摘要。" },
       { key: "escort", title: "找陪诊", subtitle: "老人 / 孕妇 / 儿科 / 术后", desc: "提交需求后生成服务单和进度预览。" }
     ]
   },
@@ -62,6 +63,10 @@ Page({
     wx.switchTab({ url: "/pages/order/index" });
   },
 
+  goAiPage() {
+    wx.switchTab({ url: "/pages/ai/index" });
+  },
+
   goHospitalDetail(event) {
     const id = event.currentTarget.dataset.id;
     wx.setStorageSync("hospitalActiveTask", id);
@@ -72,6 +77,10 @@ Page({
     const { key } = event.currentTarget.dataset;
     if (key === "escort") {
       this.goOrderPage();
+      return;
+    }
+    if (key === "ai") {
+      this.goAiPage();
       return;
     }
     wx.setStorageSync("hospitalActiveTask", key);

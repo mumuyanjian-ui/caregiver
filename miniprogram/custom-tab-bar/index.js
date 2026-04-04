@@ -17,6 +17,12 @@ Component({
         activeIcon: "十"
       },
       {
+        pagePath: "/pages/ai/index",
+        text: "AI助手",
+        icon: "AI",
+        activeIcon: "AI"
+      },
+      {
         pagePath: "/pages/order/index",
         text: "陪诊下单",
         icon: "✎",
