@@ -118,6 +118,98 @@
   z-index: 999;
 }
 
+.operation-banner {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18rpx;
+  padding: 30rpx 28rpx 34rpx;
+  background:
+    linear-gradient(135deg, rgba(7, 89, 133, 0.95) 0%, rgba(13, 148, 136, 0.96) 55%, rgba(20, 184, 166, 0.92) 100%);
+  color: #ffffff;
+}
+
+.banner-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.banner-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 22rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.banner-link {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.banner-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 24rpx;
+  font-size: 52rpx;
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.banner-desc {
+  position: relative;
+  z-index: 2;
+  margin-top: 16rpx;
+  max-width: 88%;
+  font-size: 27rpx;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.banner-stats {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-top: 24rpx;
+}
+
+.banner-stat {
+  padding: 12rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1rpx solid rgba(255, 255, 255, 0.16);
+  font-size: 24rpx;
+}
+
+.banner-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(4rpx);
+}
+
+.banner-glow-one {
+  right: -40rpx;
+  top: -30rpx;
+  width: 220rpx;
+  height: 220rpx;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.32), transparent 66%);
+}
+
+.banner-glow-two {
+  right: 110rpx;
+  bottom: -60rpx;
+  width: 180rpx;
+  height: 180rpx;
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.24), transparent 70%);
+}
+
 .hero {
   position: relative;
   overflow: hidden;

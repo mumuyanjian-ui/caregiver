@@ -2,18 +2,18 @@ const OpenAI = require("openai");
 
 function buildSystemPrompt(scene) {
   const base =
-    "你是一个医疗陪诊类小程序中的 AI 助手。你的回答必须简洁、清晰、结构化，适合普通用户阅读。你不能替代医生做诊断，也不能做高风险医疗决策。对紧急症状必须提醒尽快线下就医或急诊。";
+    "你是一个潮汕文旅小程序中的 AI 助手。你的回答要简洁、可信、好执行，适合旅游用户直接拿去安排行程。请尽量结构化输出，优先给出顺路建议、本地美食、文化亮点和避坑提醒。";
 
   const prompts = {
-    triage:
-      "用户需要根据症状初步判断挂号方向。请输出：1. 推荐科室 2. 推荐理由 3. 需要尽快就医的风险提醒 4. 建议携带资料。",
-    prep:
-      "用户需要就医准备建议。请输出：1. 出门前准备清单 2. 到院后优先做什么 3. 容易遗漏的资料 4. 陪诊建议。",
-    explain:
-      "用户需要对检查结果或医学术语做通俗解释。请输出：1. 通俗解释 2. 可能需要问医生的问题 3. 复诊/检查建议 4. 风险提醒。禁止下确定性诊断。"
+    itinerary:
+      "用户需要路线建议。请输出：1. 推荐行程安排 2. 每段路线的理由 3. 适合停留的时长 4. 交通和时间提醒。",
+    food:
+      "用户需要美食推荐。请输出：1. 推荐吃什么 2. 适合在哪一带吃 3. 建议的用餐顺序 4. 排队或口味提醒。",
+    culture:
+      "用户需要文化解读。请输出：1. 景点或习俗的看点 2. 为什么值得去 3. 更有体验感的参观方式 4. 容易忽略的小细节。"
   };
 
-  return `${base}\n${prompts[scene] || prompts.triage}`;
+  return `${base}\n${prompts[scene] || prompts.itinerary}`;
 }
 
 exports.main = async (event) => {
@@ -39,8 +39,8 @@ exports.main = async (event) => {
           {
             type: "input_text",
             text:
-              `用户年龄：${event.patientAge || "未填写"}\n` +
-              `目标医院：${event.selectedHospital || "未指定"}\n` +
+              `旅行天数：${event.travelDays || "未填写"}\n` +
+              `偏好目的地：${event.selectedDestination || "未指定"}\n` +
               `用户输入：${event.inputText || ""}\n\n` +
               `业务知识库：\n${event.knowledge || ""}`
           }

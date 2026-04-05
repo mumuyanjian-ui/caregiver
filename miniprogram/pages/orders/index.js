@@ -19,10 +19,9 @@ Page({
   },
 
   onShow() {
-    this.setData({
-      cloudReady: isCloudReady()
-    });
-    if (isCloudReady()) {
+    const cloudReady = isCloudReady();
+    this.setData({ cloudReady });
+    if (cloudReady) {
       this.loadOrders();
     }
   },
@@ -42,7 +41,7 @@ Page({
     } catch (error) {
       this.setData({ isLoading: false });
       wx.showToast({
-        title: error.message || "订单加载失败",
+        title: error.message || "行程加载失败",
         icon: "none"
       });
     }

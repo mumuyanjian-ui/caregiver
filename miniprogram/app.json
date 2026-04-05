@@ -7,7 +7,7 @@
     "pages/orders/index"
   ],
   "window": {
-    "navigationBarTitleText": "陪诊通",
+    "navigationBarTitleText": "潮汕游AI",
     "navigationBarBackgroundColor": "#fdf8ef",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f7f2e8",
@@ -26,7 +26,7 @@
       },
       {
         "pagePath": "pages/hospital/index",
-        "text": "医院流程"
+        "text": "潮汕探索"
       },
       {
         "pagePath": "pages/ai/index",
@@ -34,7 +34,7 @@
       },
       {
         "pagePath": "pages/order/index",
-        "text": "陪诊下单"
+        "text": "行程定制"
       }
     ]
   },

@@ -1,10 +1,10 @@
 <view class="page-shell">
   <view class="panel ai-head">
-    <view class="eyebrow">AI就医助手</view>
-    <view class="section-title">让 AI 帮你更快完成就医准备</view>
-    <view class="muted">适合做科室建议、就医准备清单、检查结果解释和看病沟通整理。</view>
+    <view class="eyebrow">AI 潮汕旅行助手</view>
+    <view class="section-title">让 AI 帮你补路线、美食和文化细节</view>
+    <view class="muted">适合做 1 到 3 天路线规划、按区域找吃的、理解潮汕文化景点的看点。</view>
     <view class="cloud-tip {{cloudReady ? 'ready' : 'warning'}}">
-      {{cloudReady ? '云开发已连接，AI 可通过云函数调用。' : '请先在 app.js 里配置云开发环境 ID，并部署 aiCareAssistant 云函数。'}}
+      {{cloudReady ? '云开发已连接，AI 可通过云函数生成建议。' : '请先在 app.js 中配置云环境 ID，并部署 aiCareAssistant 云函数。'}}
     </view>
   </view>
 
@@ -24,19 +24,19 @@
 
   <view class="panel ai-form">
     <view class="field">
-      <text class="field-label">目标医院</text>
-      <picker range="{{hospitalNames}}" value="{{hospitalIndex}}" bindchange="onPickerChange">
-        <view class="picker">{{hospitalNames[hospitalIndex]}}</view>
+      <text class="field-label">偏好目的地</text>
+      <picker range="{{destinationNames}}" value="{{destinationIndex}}" bindchange="onPickerChange">
+        <view class="picker">{{destinationNames[destinationIndex]}}</view>
       </picker>
     </view>
 
     <view class="field">
-      <text class="field-label">患者年龄</text>
-      <input type="number" placeholder="例如 68" data-field="patientAge" bindinput="onInput" value="{{patientAge}}" />
+      <text class="field-label">计划天数</text>
+      <input type="number" placeholder="例如 2" data-field="travelDays" bindinput="onInput" value="{{travelDays}}" />
     </view>
 
     <view class="field">
-      <text class="field-label">描述内容</text>
+      <text class="field-label">描述需求</text>
       <textarea
         placeholder="{{promptPlaceholder}}"
         data-field="inputText"
@@ -45,30 +45,30 @@
       ></textarea>
     </view>
 
-    <view class="primary-btn submit-btn" bindtap="runAssistant">{{isLoading ? 'AI 思考中...' : '生成 AI 建议'}}</view>
+    <view class="primary-btn submit-btn" bindtap="runAssistant">{{isLoading ? 'AI 正在整理中...' : '生成 AI 旅行建议'}}</view>
   </view>
 
   <view class="panel ai-result" wx:if="{{result}}">
-    <view class="eyebrow">AI结果</view>
-    <view class="section-title">建议输出</view>
+    <view class="eyebrow">AI 输出</view>
+    <view class="section-title">你的潮汕建议</view>
     <view class="result-card">
       <text class="result-text">{{result}}</text>
     </view>
   </view>
 
   <view class="panel ai-tips" wx:if="{{!result}}">
-    <view class="eyebrow">建议用法</view>
+    <view class="eyebrow">推荐场景</view>
     <view class="tip-card">
-      <text class="tip-title">科室建议</text>
-      <text class="muted">描述症状、持续时间、年龄和担忧点，AI 会给出推荐挂号方向。</text>
+      <text class="tip-title">路线建议</text>
+      <text class="muted">输入出发地、天数和偏好，AI 会给出更顺路的潮汕玩法。</text>
     </view>
     <view class="tip-card">
-      <text class="tip-title">就医准备</text>
-      <text class="muted">输入医院和就医目的，AI 会整理证件、资料、流程重点。</text>
+      <text class="tip-title">美食推荐</text>
+      <text class="muted">说清楚你住哪里、喜欢什么口味，AI 会按区域和时间段推荐。</text>
     </view>
     <view class="tip-card">
-      <text class="tip-title">报告解释</text>
-      <text class="muted">输入检查结论，AI 会用更通俗的话解释，但不替代医生诊断。</text>
+      <text class="tip-title">文化解读</text>
+      <text class="muted">适合第一次去潮州古城，先理解景点意义再去会更有沉浸感。</text>
     </view>
   </view>
 </view>

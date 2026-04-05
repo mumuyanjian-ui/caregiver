@@ -1,28 +1,29 @@
 <view class="page-shell">
   <view class="panel order-list-head">
-    <view class="eyebrow">我的订单</view>
-    <view class="section-title">查看已提交的陪诊服务单</view>
-    <view class="muted">这里展示云开发数据库里的订单记录。</view>
+    <view class="eyebrow">我的行程</view>
+    <view class="section-title">查看已保存的潮汕旅行计划</view>
+    <view class="muted">这里展示云开发数据库里的旅行偏好和计划记录。</view>
     <view class="cloud-tip {{cloudReady ? 'ready' : 'warning'}}">
-      {{cloudReady ? '云开发已连接，可实时读取 escort_orders 集合。' : '请先在 app.js 里配置云环境 ID。'}}
+      {{cloudReady ? '云开发已连接，可实时读取 travel_plans 集合。' : '请先在 app.js 里配置云环境 ID。'}}
     </view>
   </view>
 
   <view class="loading-wrap" wx:if="{{isLoading}}">
-    <view class="muted">订单加载中...</view>
+    <view class="muted">行程加载中...</view>
   </view>
 
   <view class="order-list" wx:elif="{{orders.length}}">
     <view class="panel order-card" wx:for="{{orders}}" wx:key="_id">
       <view class="order-card-head">
-        <view class="card-title">{{item.patientName}}</view>
+        <view class="card-title">{{item.travelerName}}</view>
         <view class="chip">{{item.status}}</view>
       </view>
-      <view class="muted">{{item.hospitalName}} · {{item.departmentType}}</view>
-      <view class="muted">预约状态：{{item.appointmentStatus}}</view>
-      <view class="muted">行动能力：{{item.mobilityLevel}}</view>
-      <view class="muted">上门接送：{{item.pickupNeededText}}</view>
-      <view class="muted">报告/取药协助：{{item.reportNeededText}}</view>
+      <view class="muted">{{item.destinationName}} · {{item.themeName}}</view>
+      <view class="muted">人数：{{item.peopleCount}}</view>
+      <view class="muted">天数：{{item.travelDays}}</view>
+      <view class="muted">节奏：{{item.pace}}</view>
+      <view class="muted">交通：{{item.selfDriveText}}</view>
+      <view class="muted">美食优先级：{{item.foodPriorityText}}</view>
       <view class="muted">备注：{{item.notes}}</view>
       <view class="order-foot">
         <text class="order-id">ID：{{item._id}}</text>
@@ -32,7 +33,7 @@
   </view>
 
   <view class="empty-tip" wx:else>
-    <text class="empty-icon">🗂️</text>
-    <text class="empty-text">还没有订单记录，先去下单页提交一笔吧。</text>
+    <text class="empty-icon">◈</text>
+    <text class="empty-text">还没有旅行计划，先去行程定制页保存一份吧。</text>
   </view>
 </view>

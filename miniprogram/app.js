@@ -9,7 +9,7 @@ App({
   },
 
   globalData: {
-    appName: "陪诊通",
+    appName: "潮汕游AI",
     cloudEnvId: "your-cloud-env-id"
   }
 });

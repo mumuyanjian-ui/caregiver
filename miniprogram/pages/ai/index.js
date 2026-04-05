@@ -1,42 +1,43 @@
-const { hospitals } = require("../../data/hospitals");
-const { departmentMatches } = require("../../data/departments");
-const { processLibrary } = require("../../data/processes");
+const { destinations, travelThemes, routeLibrary } = require("../../data/chaoshan");
 const { isCloudReady, runAiAssistant } = require("../../services/aiService");
 
 function buildSceneTabs(activeScene) {
   return [
-    { key: "triage", label: "科室建议", active: activeScene === "triage" },
-    { key: "prep", label: "就医准备", active: activeScene === "prep" },
-    { key: "explain", label: "报告解释", active: activeScene === "explain" }
+    { key: "itinerary", label: "路线建议", active: activeScene === "itinerary" },
+    { key: "food", label: "美食推荐", active: activeScene === "food" },
+    { key: "culture", label: "文化解读", active: activeScene === "culture" }
   ];
 }
 
 function buildKnowledgeText() {
-  const hospitalText = hospitals
-    .map((item) => `${item.name}：${item.district}，核心科室${item.coreDepartments.join("、")}，建议${item.escortAdvice}`)
+  const destinationText = destinations
+    .map((item) => `${item.name}：${item.region}，标签${item.tag}，亮点${item.highlight}，适合${item.bestFor}，美食${item.foods.join("、")}`)
     .join("\n");
-  const departmentText = departmentMatches
-    .map((item) => `${item.type}：推荐${item.recommendations.join("、")}，备注${item.note}`)
-    .join("\n");
-  const processText = Object.keys(processLibrary)
-    .map((key) => `${processLibrary[key].label}：${processLibrary[key].steps.map((step) => `${step.title}(${step.location})`).join("；")}`)
+  const themeText = travelThemes.map((item) => `${item.title}：${item.subtitle}。建议：${item.suggestion}`).join("\n");
+  const routeText = Object.keys(routeLibrary)
+    .map((key) => {
+      const current = routeLibrary[key];
+      return Object.keys(current)
+        .map((tab) => `${key}-${current[tab].label}：${current[tab].steps.map((step) => `${step.title}(${step.location})`).join("；")}`)
+        .join("\n");
+    })
     .join("\n");
 
-  return `医院信息：\n${hospitalText}\n\n科室推荐：\n${departmentText}\n\n流程信息：\n${processText}`;
+  return `目的地信息：\n${destinationText}\n\n旅行主题：\n${themeText}\n\n路线库：\n${routeText}`;
 }
 
 Page({
   data: {
     cloudReady: false,
     isLoading: false,
-    activeScene: "triage",
-    sceneTabs: buildSceneTabs("triage"),
-    hospitalNames: ["未指定"].concat(hospitals.map((item) => item.name)),
-    hospitalIndex: 0,
-    patientAge: "",
+    activeScene: "itinerary",
+    sceneTabs: buildSceneTabs("itinerary"),
+    destinationNames: ["未指定"].concat(destinations.map((item) => item.name)),
+    destinationIndex: 0,
+    travelDays: "2",
     inputText: "",
     result: "",
-    promptPlaceholder: "输入症状、持续时间、重点担心的问题，例如：老人胸闷3天，伴头晕，应该挂什么科？"
+    promptPlaceholder: "例如：我周末从广州出发去潮汕，2天1夜，喜欢古城和夜景，帮我安排路线。"
   },
 
   onShow() {
@@ -48,9 +49,9 @@ Page({
   selectScene(event) {
     const activeScene = event.currentTarget.dataset.scene;
     const placeholders = {
-      triage: "输入症状、持续时间、重点担心的问题，例如：老人胸闷3天，伴头晕，应该挂什么科？",
-      prep: "输入这次就医目的，例如：第一次去中山一院看骨科，帮我准备就诊材料和流程提醒。",
-      explain: "输入检查结果或医生术语，例如：CT提示肺部小结节，帮我做通俗解释和复诊建议。"
+      itinerary: "例如：我周末从广州出发去潮汕，2天1夜，喜欢古城和夜景，帮我安排路线。",
+      food: "例如：我住在汕头小公园附近，想吃到本地人推荐的牛肉火锅和小吃，怎么排最顺？",
+      culture: "例如：第一次去潮州古城，广济桥、牌坊街和工夫茶背后的文化怎么理解更有意思？"
     };
 
     this.setData({
@@ -70,7 +71,7 @@ Page({
 
   onPickerChange(event) {
     this.setData({
-      hospitalIndex: Number(event.detail.value)
+      destinationIndex: Number(event.detail.value)
     });
   },
 
@@ -78,7 +79,7 @@ Page({
     const inputText = (this.data.inputText || "").trim();
     if (!inputText) {
       wx.showToast({
-        title: "请先输入内容",
+        title: "请先输入旅行需求",
         icon: "none"
       });
       return;
@@ -94,11 +95,11 @@ Page({
     });
 
     try {
-      const selectedHospital = this.data.hospitalNames[this.data.hospitalIndex];
+      const selectedDestination = this.data.destinationNames[this.data.destinationIndex];
       const res = await runAiAssistant({
         scene: this.data.activeScene,
-        patientAge: this.data.patientAge || "未填写",
-        selectedHospital,
+        travelDays: this.data.travelDays || "2",
+        selectedDestination,
         inputText,
         knowledge: buildKnowledgeText()
       });

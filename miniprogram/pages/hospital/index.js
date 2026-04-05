@@ -1,67 +1,63 @@
-const { hospitals } = require("../../data/hospitals");
-const { processLibrary } = require("../../data/processes");
+const { destinations, routeLibrary } = require("../../data/chaoshan");
 
-function formatHospitalDetail(hospital, activeHospitalId) {
+function formatDestination(item, activeId) {
   return {
-    ...hospital,
-    coreDepartmentText: hospital.coreDepartments.join("、"),
-    active: hospital.id === activeHospitalId
+    ...item,
+    foodsText: item.foods.join("、"),
+    active: item.id === activeId
   };
 }
 
-function buildTaskTabs(activeTask) {
-  return Object.keys(processLibrary).map((key) => ({
+function buildRouteTabs(activeTab, activeDestinationId) {
+  const currentLibrary = routeLibrary[activeDestinationId] || routeLibrary["chaozhou-ancient-city"];
+  return Object.keys(currentLibrary).map((key) => ({
     key,
-    label: processLibrary[key].label,
-    active: key === activeTask
+    label: currentLibrary[key].label,
+    active: key === activeTab
   }));
 }
 
-function buildSteps(activeTask) {
-  return processLibrary[activeTask].steps.map((step, index) => ({
+function buildSteps(activeDestinationId, activeTab) {
+  const currentLibrary = routeLibrary[activeDestinationId] || routeLibrary["chaozhou-ancient-city"];
+  const currentTab = currentLibrary[activeTab] || currentLibrary.overview;
+  return currentTab.steps.map((step, index) => ({
     ...step,
-    orderText: `第${index + 1}步`
+    orderText: `第${index + 1}站`
   }));
 }
 
 Page({
   data: {
     searchKeyword: "",
-    isLoading: false,
-    activeHospitalId: hospitals[0].id,
-    hospitals: hospitals.map((hospital) => formatHospitalDetail(hospital, hospitals[0].id)),
-    filteredHospitals: hospitals.map((hospital) => formatHospitalDetail(hospital, hospitals[0].id)),
-    activeTask: "registration",
-    taskTabs: buildTaskTabs("registration"),
-    activeTaskLabel: processLibrary.registration.label,
-    activeTaskDescription: processLibrary.registration.description,
-    steps: buildSteps("registration"),
-    activeHospital: formatHospitalDetail(hospitals[0], hospitals[0].id),
-    activeHospitalSourceText: `${hospitals[0].name} 已配置详细流程模板。`
+    activeDestinationId: destinations[0].id,
+    activeTab: "overview",
+    destinations: destinations.map((item) => formatDestination(item, destinations[0].id)),
+    filteredDestinations: destinations.map((item) => formatDestination(item, destinations[0].id)),
+    routeTabs: buildRouteTabs("overview", destinations[0].id),
+    activeDestination: formatDestination(destinations[0], destinations[0].id),
+    activeRouteLabel: routeLibrary["chaozhou-ancient-city"].overview.label,
+    activeRouteDescription: routeLibrary["chaozhou-ancient-city"].overview.description,
+    steps: buildSteps(destinations[0].id, "overview")
   },
 
   onLoad() {
-    const stored = wx.getStorageSync("hospitalActiveTask");
-    if (stored) {
-      if (processLibrary[stored]) {
-        this.setData({ activeTask: stored });
-      } else if (hospitals.find((hospital) => hospital.id === stored)) {
-        this.setData({ activeHospitalId: stored });
-      }
-      wx.removeStorageSync("hospitalActiveTask");
+    const stored = wx.getStorageSync("chaoshanDestinationHint");
+    if (stored && destinations.some((item) => item.id === stored)) {
+      this.setData({
+        activeDestinationId: stored
+      });
+      wx.removeStorageSync("chaoshanDestinationHint");
     }
     this.refreshPageState();
   },
 
   onShow() {
-    const stored = wx.getStorageSync("hospitalActiveTask");
-    if (stored) {
-      if (processLibrary[stored]) {
-        this.setData({ activeTask: stored });
-      } else if (hospitals.find((hospital) => hospital.id === stored)) {
-        this.setData({ activeHospitalId: stored });
-      }
-      wx.removeStorageSync("hospitalActiveTask");
+    const stored = wx.getStorageSync("chaoshanDestinationHint");
+    if (stored && destinations.some((item) => item.id === stored)) {
+      this.setData({
+        activeDestinationId: stored
+      });
+      wx.removeStorageSync("chaoshanDestinationHint");
       this.refreshPageState();
     }
   },
@@ -81,69 +77,58 @@ Page({
   },
 
   applySearch() {
-    const { searchKeyword, activeHospitalId } = this.data;
-    const formattedHospitals = hospitals.map((hospital) => formatHospitalDetail(hospital, activeHospitalId));
-    const filteredHospitals = searchKeyword
-      ? formattedHospitals.filter((hospital) =>
-          [hospital.name, hospital.district, hospital.address, hospital.coreDepartmentText]
-            .join(" ")
-            .toLowerCase()
-            .includes(searchKeyword),
+    const { searchKeyword, activeDestinationId } = this.data;
+    const formatted = destinations.map((item) => formatDestination(item, activeDestinationId));
+    const filtered = searchKeyword
+      ? formatted.filter((item) =>
+          [item.name, item.region, item.tag, item.highlight, item.bestFor, item.foodsText].join(" ").toLowerCase().includes(searchKeyword)
         )
-      : formattedHospitals;
+      : formatted;
 
-    const nextList = filteredHospitals.length ? filteredHospitals : formattedHospitals;
-    const hasCurrent = nextList.some((hospital) => hospital.id === activeHospitalId);
-    const nextActiveHospitalId = hasCurrent ? activeHospitalId : nextList[0].id;
+    const nextList = filtered.length ? filtered : formatted;
+    const hasCurrent = nextList.some((item) => item.id === activeDestinationId);
+    const nextActiveId = hasCurrent ? activeDestinationId : nextList[0].id;
 
     this.setData({
-      hospitals: formattedHospitals.map((hospital) => ({
-        ...hospital,
-        active: hospital.id === nextActiveHospitalId
-      })),
-      filteredHospitals: nextList.map((hospital) => ({
-        ...hospital,
-        active: hospital.id === nextActiveHospitalId
-      })),
-      activeHospitalId: nextActiveHospitalId
+      destinations: formatted.map((item) => ({ ...item, active: item.id === nextActiveId })),
+      filteredDestinations: nextList.map((item) => ({ ...item, active: item.id === nextActiveId })),
+      activeDestinationId: nextActiveId
     });
-
     this.refreshPageState();
   },
 
-  selectHospital(event) {
+  selectDestination(event) {
     this.setData({
-      activeHospitalId: event.currentTarget.dataset.id
+      activeDestinationId: event.currentTarget.dataset.id
     });
     this.applySearch();
   },
 
-  selectTask(event) {
+  selectTab(event) {
     this.setData({
-      activeTask: event.currentTarget.dataset.task
+      activeTab: event.currentTarget.dataset.tab
     });
     this.refreshPageState();
   },
 
   refreshPageState() {
-    const activeHospital =
-      this.data.hospitals.find((hospital) => hospital.id === this.data.activeHospitalId) ||
-      formatHospitalDetail(hospitals[0], this.data.activeHospitalId);
-    const activeTaskConfig = processLibrary[this.data.activeTask];
+    const activeDestination =
+      this.data.destinations.find((item) => item.id === this.data.activeDestinationId) ||
+      formatDestination(destinations[0], this.data.activeDestinationId);
+    const currentLibrary = routeLibrary[this.data.activeDestinationId] || routeLibrary["chaozhou-ancient-city"];
+    const currentTab = currentLibrary[this.data.activeTab] ? this.data.activeTab : "overview";
 
     this.setData({
-      taskTabs: buildTaskTabs(this.data.activeTask),
-      activeTaskLabel: activeTaskConfig.label,
-      activeTaskDescription: activeTaskConfig.description,
-      steps: buildSteps(this.data.activeTask),
-      activeHospital,
-      activeHospitalSourceText: activeHospital.detailed
-        ? `${activeHospital.name} 已配置详细流程模板。`
-        : `${activeHospital.name} 当前展示通用流程模板。`
+      activeTab: currentTab,
+      activeDestination,
+      routeTabs: buildRouteTabs(currentTab, this.data.activeDestinationId),
+      activeRouteLabel: currentLibrary[currentTab].label,
+      activeRouteDescription: currentLibrary[currentTab].description,
+      steps: buildSteps(this.data.activeDestinationId, currentTab)
     });
   },
 
-  goOrderPage() {
+  goPlanPage() {
     wx.switchTab({
       url: "/pages/order/index"
     });

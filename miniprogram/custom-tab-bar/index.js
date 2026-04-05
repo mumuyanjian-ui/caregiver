@@ -12,9 +12,9 @@ Component({
       },
       {
         pagePath: "/pages/hospital/index",
-        text: "医院流程",
-        icon: "十",
-        activeIcon: "十"
+        text: "潮汕探索",
+        icon: "◈",
+        activeIcon: "◈"
       },
       {
         pagePath: "/pages/ai/index",
@@ -24,9 +24,9 @@ Component({
       },
       {
         pagePath: "/pages/order/index",
-        text: "陪诊下单",
-        icon: "✎",
-        activeIcon: "✎"
+        text: "行程定制",
+        icon: "✦",
+        activeIcon: "✦"
       }
     ]
   },

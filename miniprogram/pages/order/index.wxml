@@ -1,77 +1,72 @@
 <view class="page-shell">
-  <view class="emergency-bar" bindtap="callEmergency">
-    <text class="emergency-icon">📞</text>
-    <text class="emergency-text">紧急呼叫</text>
-  </view>
-
   <view class="panel order-head">
-    <view class="eyebrow">陪诊下单</view>
-    <view class="section-title">提交需求，生成服务单</view>
-    <view class="muted">适合老人、孕妇、儿科、术后复诊等需要全流程协助的用户。</view>
+    <view class="eyebrow">AI 行程定制</view>
+    <view class="section-title">把你的潮汕偏好整理成可执行计划</view>
+    <view class="muted">适合做周末游、双城串联、海岛放空、为吃而来的潮汕路线。</view>
     <view class="cloud-tip {{cloudReady ? 'ready' : 'warning'}}">
-      {{cloudReady ? '云开发已连接，提交后会真实保存订单。' : '当前还未配置云环境 ID，提交前请先在 app.js 中填写。'}}
+      {{cloudReady ? '云开发已连接，提交后会真实保存你的旅行计划。' : '当前还未配置云环境 ID，提交前请先在 app.js 中填写。'}}
     </view>
   </view>
 
   <view class="panel form-panel">
     <view class="field">
-      <text class="field-label">患者姓名</text>
-      <input placeholder="请输入患者姓名" data-field="patientName" bindinput="onInput" />
+      <text class="field-label">出行人称呼</text>
+      <input placeholder="例如 木木" data-field="travelerName" bindinput="onInput" />
     </view>
 
     <view class="field">
-      <text class="field-label">年龄</text>
-      <input type="number" placeholder="例如 68" data-field="age" bindinput="onInput" />
+      <text class="field-label">出行人数</text>
+      <input type="number" placeholder="例如 2" data-field="peopleCount" bindinput="onInput" />
     </view>
 
     <view class="field">
-      <text class="field-label">就诊医院</text>
-      <picker range="{{hospitalNames}}" value="{{hospitalIndex}}" data-field="hospitalIndex" bindchange="onPickerChange">
-        <view class="picker">{{hospitalNames[hospitalIndex]}}</view>
+      <text class="field-label">主要目的地</text>
+      <picker range="{{destinationNames}}" value="{{destinationIndex}}" data-field="destinationIndex" bindchange="onPickerChange">
+        <view class="picker">{{destinationNames[destinationIndex]}}</view>
       </picker>
     </view>
 
     <view class="field">
-      <text class="field-label">科室类型</text>
-      <picker range="{{departmentTypes}}" value="{{departmentIndex}}" data-field="departmentIndex" bindchange="onPickerChange">
-        <view class="picker">{{departmentTypes[departmentIndex]}}</view>
+      <text class="field-label">旅行主题</text>
+      <picker range="{{themeNames}}" value="{{themeIndex}}" data-field="themeIndex" bindchange="onPickerChange">
+        <view class="picker">{{themeNames[themeIndex]}}</view>
       </picker>
     </view>
 
     <view class="field">
-      <text class="field-label">预约情况</text>
-      <picker range="{{appointmentOptions}}" value="{{appointmentIndex}}" data-field="appointmentIndex" bindchange="onPickerChange">
-        <view class="picker">{{appointmentOptions[appointmentIndex]}}</view>
+      <text class="field-label">计划天数</text>
+      <picker range="{{travelDayOptions}}" value="{{travelDayIndex}}" data-field="travelDayIndex" bindchange="onPickerChange">
+        <view class="picker">{{travelDayOptions[travelDayIndex]}}</view>
       </picker>
     </view>
 
     <view class="field">
-      <text class="field-label">行动能力</text>
-      <picker range="{{mobilityOptions}}" value="{{mobilityIndex}}" data-field="mobilityIndex" bindchange="onPickerChange">
-        <view class="picker">{{mobilityOptions[mobilityIndex]}}</view>
+      <text class="field-label">出游节奏</text>
+      <picker range="{{paceOptions}}" value="{{paceIndex}}" data-field="paceIndex" bindchange="onPickerChange">
+        <view class="picker">{{paceOptions[paceIndex]}}</view>
       </picker>
     </view>
 
     <view class="switch-row">
-      <text class="field-label">需要上门接送</text>
-      <switch color="#0f766e" checked="{{pickupNeeded}}" data-field="pickupNeeded" bindchange="onSwitchChange" />
+      <text class="field-label">优先自驾</text>
+      <switch color="#0f766e" checked="{{selfDrive}}" data-field="selfDrive" bindchange="onSwitchChange" />
     </view>
 
     <view class="switch-row">
-      <text class="field-label">需要陪同打印报告 / 取药</text>
-      <switch color="#0f766e" checked="{{reportNeeded}}" data-field="reportNeeded" bindchange="onSwitchChange" />
+      <text class="field-label">把美食排在高优先级</text>
+      <switch color="#0f766e" checked="{{foodPriority}}" data-field="foodPriority" bindchange="onSwitchChange" />
     </view>
 
     <view class="field">
-      <text class="field-label">备注</text>
-      <textarea placeholder="例如：老人第一次去中山一院，需要协助挂号、抽血、取药。" data-field="notes" bindinput="onInput"></textarea>
+      <text class="field-label">补充说明</text>
+      <textarea placeholder="例如：周五晚上到汕头，想住有氛围的老城区，第二天再去潮州古城。" data-field="notes" bindinput="onInput"></textarea>
     </view>
 
-    <view class="primary-btn submit-btn" bindtap="submitOrder">{{isSubmitting ? '提交中...' : '生成并保存服务单'}}</view>
+    <view class="primary-btn submit-btn" bindtap="submitOrder">{{isSubmitting ? '保存中...' : '生成并保存旅行计划'}}</view>
   </view>
 
-  <view class="panel progress-panel" wx:if="{{orderPreview && showProgress}}">
-    <view class="eyebrow">服务进度</view>
+  <view class="panel progress-panel" wx:if="{{planPreview && showProgress}}">
+    <view class="eyebrow">生成进度</view>
     <view class="progress-timeline">
       <view class="progress-item {{item.active ? 'active' : ''}} {{item.current ? 'current' : ''}}" wx:for="{{progressItems}}" wx:key="order">
         <view class="progress-dot"></view>
@@ -81,38 +76,38 @@
     </view>
   </view>
 
-  <view class="panel preview-panel" wx:if="{{orderPreview}}">
-    <view class="eyebrow">服务单预览</view>
-    <view class="section-title">{{orderPreview.patientName}} 的就医协助任务</view>
-    <view class="muted">{{orderPreview.hospitalName}} · {{orderPreview.departmentType}}</view>
-    <view class="chip" wx:if="{{orderId}}">订单编号：{{orderId}}</view>
+  <view class="panel preview-panel" wx:if="{{planPreview}}">
+    <view class="eyebrow">计划单预览</view>
+    <view class="section-title">{{planPreview.travelerName}} 的潮汕行程</view>
+    <view class="muted">{{planPreview.destinationName}} · {{planPreview.themeName}}</view>
+    <view class="chip" wx:if="{{orderId}}">计划编号：{{orderId}}</view>
 
     <view class="preview-list">
-      <view class="preview-item">年龄：{{orderPreview.age}}</view>
-      <view class="preview-item">预约状态：{{orderPreview.appointmentStatus}}</view>
-      <view class="preview-item">行动能力：{{orderPreview.mobilityLevel}}</view>
-      <view class="preview-item">上门接送：{{orderPreview.pickupNeededText}}</view>
-      <view class="preview-item">报告 / 取药协助：{{orderPreview.reportNeededText}}</view>
-      <view class="preview-item">备注：{{orderPreview.notes}}</view>
+      <view class="preview-item">出行人数：{{planPreview.peopleCount}}</view>
+      <view class="preview-item">计划天数：{{planPreview.travelDays}}</view>
+      <view class="preview-item">出游节奏：{{planPreview.pace}}</view>
+      <view class="preview-item">交通偏好：{{planPreview.selfDriveText}}</view>
+      <view class="preview-item">美食优先级：{{planPreview.foodPriorityText}}</view>
+      <view class="preview-item">备注：{{planPreview.notes}}</view>
     </view>
 
     <view class="sop-grid">
-      <view class="sop-card {{item.active ? 'active' : ''}}" wx:for="{{sopPreviewItems}}" wx:key="order">
+      <view class="sop-card {{item.active ? 'active' : ''}}" wx:for="{{previewItems}}" wx:key="order">
         <view class="sop-index">{{item.order}}</view>
         <view class="sop-title">{{item.title}}</view>
       </view>
     </view>
 
     <view class="progress-actions">
-      <button class="progress-btn" bindtap="simulateProgress">模拟服务进度</button>
+      <button class="progress-btn" bindtap="simulateProgress">模拟 AI 生成进度</button>
       <button class="progress-btn reset" bindtap="resetProgress" wx:if="{{showProgress}}">重置</button>
     </view>
 
-    <view class="secondary-btn view-orders-btn" bindtap="goOrdersPage">查看我的订单</view>
+    <view class="secondary-btn view-orders-btn" bindtap="goOrdersPage">查看我的行程</view>
   </view>
 
-  <view class="empty-tip" wx:if="{{!orderPreview}}">
-    <text class="empty-icon">📋</text>
-    <text class="empty-text">填写上方信息，生成服务单后可查看陪诊流程</text>
+  <view class="empty-tip" wx:if="{{!planPreview}}">
+    <text class="empty-icon">✦</text>
+    <text class="empty-text">填写偏好后，先保存一份可继续扩展的潮汕旅行计划</text>
   </view>
 </view>

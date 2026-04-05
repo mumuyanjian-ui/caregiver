@@ -1,4 +1,4 @@
-const COLLECTION_NAME = "escort_orders";
+const COLLECTION_NAME = "travel_plans";
 
 function isCloudReady() {
   return !!wx.cloud && getApp().globalData.cloudEnvId !== "your-cloud-env-id";
