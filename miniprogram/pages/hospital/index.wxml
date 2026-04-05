@@ -72,3 +72,4 @@
     <button class="action-btn primary" bindtap="goPlanPage">生成这站的 AI 行程</button>
   </view>
 </view>
+

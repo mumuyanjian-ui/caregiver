@@ -1,5 +1,5 @@
 {
-  "desc": "AI游潮汕小程序 sitemap",
+  "desc": "Ai在潮汕小程序 sitemap",
   "rules": [
     {
       "action": "allow",
@@ -7,4 +7,5 @@
     }
   ]
 }
+
 
