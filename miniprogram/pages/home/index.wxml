@@ -26,7 +26,7 @@
 
     <view class="hero panel">
       <view class="eyebrow">潮汕 AI 文旅助手</view>
-      <view class="hero-title">潮汕游AI</view>
+      <view class="hero-title">AI游潮汕</view>
       <view class="hero-desc muted">围绕潮州、汕头、揭阳做一款会给路线、会推美食、会讲文化的旅行应用。</view>
 
       <view class="metrics">
@@ -97,3 +97,4 @@
 
   <view class="back-to-top" wx:if="{{showBackToTop}}" bindtap="scrollToTop">↑</view>
 </view>
+

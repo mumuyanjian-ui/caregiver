@@ -7,7 +7,7 @@
     "pages/orders/index"
   ],
   "window": {
-    "navigationBarTitleText": "潮汕游AI",
+    "navigationBarTitleText": "AI游潮汕",
     "navigationBarBackgroundColor": "#fdf8ef",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f7f2e8",
@@ -41,3 +41,4 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
+

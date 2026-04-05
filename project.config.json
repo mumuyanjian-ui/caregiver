@@ -1,5 +1,5 @@
 {
-  "description": "潮汕游AI微信小程序",
+  "description": "AI游潮汕微信小程序",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -36,10 +36,11 @@
   "compileType": "miniprogram",
   "libVersion": "3.6.6",
   "appid": "wxa34ad4a71211c048",
-  "projectname": "潮汕游AI",
+  "projectname": "AI游潮汕",
   "miniprogramRoot": "miniprogram/",
   "simulatorType": "wechat",
   "srcMiniprogramRoot": "miniprogram/",
   "simulatorPluginLibVersion": {},
   "editorSetting": {}
 }
+
