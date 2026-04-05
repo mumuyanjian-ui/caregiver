@@ -92,7 +92,7 @@ const departmentMatches = [
   {
     type: "老年病 / 慢病 / 陪护",
     recommendations: ["广东省人民医院", "南方医科大学南方医院", "广州市第一人民医院（院本部）"],
-    note: "适合重点提供陪诊、搀扶、取药和复诊提醒。",
+    note: "适合重点提供向导、搀扶、取药和复诊提醒。",
   },
   {
     type: "肿瘤 / 化疗 / 术后",
@@ -358,7 +358,7 @@ function renderHospitalDetail() {
         <p>${hospital.coreDepartments.join("、")}</p>
       </article>
       <article class="detail-card">
-        <h4>陪诊建议</h4>
+        <h4>向导建议</h4>
         <p>${hospital.escortAdvice}</p>
       </article>
       <article class="detail-card">
@@ -367,7 +367,7 @@ function renderHospitalDetail() {
       </article>
     </div>
     <div class="tag-row">
-      ${recommendedTypes.length ? recommendedTypes.map((type) => `<span class="tag">${type}</span>`).join("") : "<span class='tag'>通用陪诊</span>"}
+      ${recommendedTypes.length ? recommendedTypes.map((type) => `<span class="tag">${type}</span>`).join("") : "<span class='tag'>通用向导</span>"}
     </div>
   `;
 }
@@ -441,7 +441,7 @@ function renderOrderOutput(payload) {
     orderOutputEl.innerHTML = `
       <div class="empty-state">
         <h3>服务单预览</h3>
-        <p>提交表单后，这里会生成陪诊任务摘要和 SOP 进度。</p>
+        <p>提交表单后，这里会生成向导任务摘要和 SOP 进度。</p>
       </div>
     `;
     return;
@@ -452,14 +452,14 @@ function renderOrderOutput(payload) {
 
   orderOutputEl.innerHTML = `
     <div class="output-card">
-      <p class="eyebrow">陪诊服务单</p>
+      <p class="eyebrow">向导服务单</p>
       <h3 class="output-title">${payload.patientName} 的就医协助任务</h3>
       <p class="output-note">${hospital?.name ?? ""} · ${payload.departmentType}</p>
       <ul class="report-list">
         <li>预约状态：${payload.appointmentStatus}</li>
         <li>行动能力：${payload.mobilityLevel}</li>
         <li>上门接送：${payload.pickupNeeded ? "需要" : "不需要"}</li>
-        <li>附加需求：${payload.reportNeeded ? "包含打印报告 / 取药协助" : "标准陪诊流程"}</li>
+        <li>附加需求：${payload.reportNeeded ? "包含打印报告 / 取药协助" : "标准向导流程"}</li>
         <li>备注：${payload.notes || "无"}</li>
       </ul>
 
@@ -566,3 +566,4 @@ renderDepartmentGrid();
 renderOrderOutput(null);
 bindQuickActions();
 bindStickyNavState();
+
