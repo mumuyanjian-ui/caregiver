@@ -1,5 +1,5 @@
 {
-  "description": "陪诊通微信小程序",
+  "description": "潮汕游AI微信小程序",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -36,7 +36,7 @@
   "compileType": "miniprogram",
   "libVersion": "3.6.6",
   "appid": "wxa34ad4a71211c048",
-  "projectname": "陪诊通",
+  "projectname": "潮汕游AI",
   "miniprogramRoot": "miniprogram/",
   "simulatorType": "wechat",
   "srcMiniprogramRoot": "miniprogram/",
