@@ -4,6 +4,7 @@
 - **What to call them:**
 - **Pronouns:**
 - **Timezone:** Asia/Shanghai (GMT+8)
+- **Email:** 251361005@qq.com
 - **Notes:**
 
 ## Context
