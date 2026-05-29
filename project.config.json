@@ -1,5 +1,5 @@
 {
-  "description": "Ai在潮汕微信小程序",
+  "description": "智慧文旅微信小程序",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -36,7 +36,7 @@
   "compileType": "miniprogram",
   "libVersion": "3.6.6",
   "appid": "wxa34ad4a71211c048",
-  "projectname": "Ai在潮汕",
+  "projectname": "智慧文旅",
   "miniprogramRoot": "miniprogram/",
   "simulatorType": "wechat",
   "srcMiniprogramRoot": "miniprogram/",

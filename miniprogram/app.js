@@ -9,7 +9,7 @@ App({
   },
 
   globalData: {
-    appName: "Ai在潮汕",
+    appName: "智慧文旅",
     cloudEnvId: "your-cloud-env-id"
   }
 });
